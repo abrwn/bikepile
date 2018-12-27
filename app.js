@@ -17,7 +17,8 @@ var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('mongodb://localhost/bikeproject', {useMongoClient: true});
+var dbUrl = process.env.DBURL || 'mongodb://localhost/bikeproject';
+mongoose.connect(dbUrl, {useMongoClient: true});
 
 app.set('view engine', 'ejs');
 
