@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/styles.css">
+        <title>Bikepile</title>
+    </head>
+    <body>
+        <nav class='navbar navbar-dark navbar-expand-sm bg-dark sticky-top d-flex'>
+            <a class='navbar-brand' href='/bikes'>Bikepile</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <div class='ml-auto'>
+                <% if(!currentUser){ %>
+                <a class='nav-link' href='/login'>Login</a>
+                <a class='nav-link' href='/register'>Sign Up</a>
+                <% }else{ %>
+                <span class='nav-add-button align-self-center text-white mr-2'>Hello, <%= currentUser.username %></span>
+                <a class='btn btn-primary p-1 mb-1' href='/bikes/new'>Add a new bike</a>
+                <a class='logout nav-link p-2' href='/logout'>Log out</a>
+                <% } %>
+                </div>
+            </div>
+        </nav>
+        <div class='all-content'>
+            <div class="container-fluid mt-2">
+                <% if(error && error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
+                <% if(success && success.length > 0){ %>
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+                <% } %>
+            </div>

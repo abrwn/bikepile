@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+            <div class='container'>
+                <div class='mw-500 mx-auto'>
+                    <h1 style='text-align: center;'>Edit bike</h1>
+                    <form method='POST' action='/bikes/<%= bike._id %>?_method=PUT'>
+                        <div class='form-group'>
+                            <input class='form-control' type='text' value='<%= bike.name %>' name='bike[name]' required></input>
+                        </div>
+                        <div class='form-group'>
+                            <input class='form-control' type='text' value='<%= bike.image %>' name='bike[image]' required pattern='^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'></input>
+                        </div>
+                        <div class='form-group'>
+                            <input class='form-control' type='text' value='<%= bike.owned_from %>' name='bike[owned_from]' required pattern='[0-9]{4}'></input>
+                        </div>
+                        <div class='form-group'>
+                            <input class='form-control' type='text' value='<%= bike.owned_to %>' name='bike[owned_to]' required pattern='[0-9]{4}|\bpresent\b'></input>
+                        </div>
+                        <div class='form-group'>
+                            <input class='btn btn-lg btn-block btn-primary' type='submit'></input>
+                        </div>
+                    </form>
+                    <a href='/bikes/<%= bike._id %>' class='btn btn-lg btn-outline-danger btn-block'>Cancel</a>
+                </div>
+            </div>
+<% include ../partials/footer %>

@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+            <div class='container col-12 col-sm-10 col-md-8'>
+                <div class='d-flex'>
+                    <div class='mr-auto'>
+                       <h2 class='display-5 my-2'><%= bike.name %></h2> 
+                    </div>
+                    <div class='mt-3'>
+                        <% if(currentUser && bike.author.id.equals(currentUser._id)){ %>
+                        <a class='btn btn-outline-warning btn-sm' href='<%= bike._id %>/edit'>Edit</a>
+                        <form class='delete-form' action='/bikes/<%= bike._id %>?_method=DELETE' method='POST'>
+                            <button class='btn btn-outline-danger btn-sm'>Delete</button>
+                        </form>
+                        <% } %>
+                    </div>        
+                </div>
+                <img class='img-fluid pb-2 px-0' src='<%= bike.image %>'>
+                <div class='d-flex'>
+                    <div class='mr-auto'>Owned from <%= bike.owned_from %> to <%= bike.owned_to %></div>
+                    <div class=''><em>Submitted by <%= bike.author.username %></em></div>
+                </div>
+                <div class='d-flex'>
+                    <div class='mr-auto'>
+                        <h2 class='display-5 mt-3 mb-1'>Comments</h2>        
+                    </div>        
+                    <div>
+                        <a class='btn btn-primary btn-sm mt-4' href='<%= bike._id %>/comments/new'>Add comment</a>             
+                    </div>
+                </div>
+                <% bike.comments.forEach(function(comment){ %>
+                <hr class="mt-1">
+                <p class='mb-1'><strong><%= comment.author.username %></strong> <em><%= comment.createdDate.toLocaleString('en-GB') %></em></p>
+                <p><%= comment.text %></p>
+                <div class='mt-1 mb-3'>
+                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                    <a class='btn btn-outline-warning btn-sm' href='<%= bike._id %>/comments/<%= comment._id %>/edit'>Edit</a>
+                    <form class='delete-form' action='/bikes/<%= bike._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
+                        <button class='btn btn-outline-danger btn-sm'>Delete</button>
+                    </form>    
+                    <% } %>
+                </div>
+                <% }) %>
+                <% if (bike.comments.length <1){ %>
+                <p class='mt-2 mb-5'><em>No comments yet. Add one by clicking 'Add comment' above.</em></p>
+                <% } %>
+            </div>
+<% include ../partials/footer %>

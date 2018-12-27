@@ -1,0 +1,15 @@
+<% include partials/header-bg-image %>
+            <div class='mx-2'>    
+                <div class="container jumbotron py-2 px-4 my-5 text-center mw-500">
+                    <h1 class="display-5">Log in</h1>
+                    <p>Log in to post your bikes and comment on others' bikes.</p>
+                    <div class='mx-auto mb-3'>
+                        <form action='/login' method='POST'>
+                            <input class='col-10 col-sm-8 mx-auto mb-2' type='text' name='username' placeholder='Username'></input>
+                            <input class='col-10 col-sm-8 mx-auto mb-2' type='password' name='password' placeholder='Password'></input>
+                            <button class='d-block col-10 col-sm-8 mx-auto mb-2 btn-primary'>Log in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>   
+<% include partials/footer %>
